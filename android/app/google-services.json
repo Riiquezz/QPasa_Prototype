@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "898937017338",
+    "firebase_url": "https://qpasa-96517.firebaseio.com",
+    "project_id": "qpasa-96517",
+    "storage_bucket": "qpasa-96517.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898937017338:android:7ea7a075c6055417f24a43",
+        "android_client_info": {
+          "package_name": "com.example.QPasa_Prototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "898937017338-9a5ttfcn9samo171tgtqjpc816ijkoja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyV9nYshsy3YRv7tWoXn4TcxOylSgCN74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "898937017338-9a5ttfcn9samo171tgtqjpc816ijkoja.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

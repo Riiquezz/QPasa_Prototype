@@ -40,7 +40,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MenuItens(),
+          builder: (context) => Menu(),
         ),
       );
     }
@@ -112,7 +112,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => MenuItens(),
+                builder: (context) => Menu(),
               ),
             );
           });
@@ -238,7 +238,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => MenuItens(),
+                                builder: (context) => Menu(),
                               ),
                             );
                           } else {

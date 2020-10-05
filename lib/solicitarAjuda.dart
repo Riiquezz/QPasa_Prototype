@@ -1,4 +1,4 @@
-import 'package:QPasa_Prototype/menu.dart';
+import 'package:QPasa_Prototype/resumoAjuda.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,68 +10,31 @@ import './utils/location.dart';
 
 import 'login.dart';
 
-void main() => runApp(MyApp());
+import 'package:time_machine/time_machine.dart';
+import 'package:time_machine/time_machine_text_patterns.dart';
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class SolicitarAjuda extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'QPasa',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        inputDecorationTheme: InputDecorationTheme(
-          isCollapsed: true,
-          contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-        ),
-      ),
-      home: MyLoginPage(),
-    );
-  }
+  _SolicitarAjudaState createState() => _SolicitarAjudaState();
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _SolicitarAjudaState extends State<SolicitarAjuda> {
   final _auth = FirebaseAuth.instance;
   final _cloudStorage = Firestore.instance;
   final dateFormat = DateFormat("dd/MM/yyyy");
   bool showProgress = false;
 
-  String fullName,
-      email,
-      password,
-      cpfOuCnpjNumber,
-      gender,
-      state,
-      city,
-      celularNumber,
-      rgNumber;
-  DateTime birthday;
+  int _n = 0;
 
-  @override
-  void initState() {
-    getStateAndCityData();
-
-    super.initState();
-  }
-
-  void getStateAndCityData() async {
-    Location location = Location();
-    await location.getCurrentPosition();
-
-    await location.getCurrentPositionDataLatLong(
-      location.latitude,
-      location.longitude,
-    );
-
-    state = location.state;
-    city = location.city;
-  }
+  String tipoDose,
+      qtdDose,
+      rota,
+      dtEntrega,
+      agendarPedido,
+      statusPedido,
+      dataPedido,
+      nrPedido;
+  String email, password;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 20.0,
                     ),
                     Text(
-                      'CADASTRO PRODUTOR',
+                      'PEDIDO',
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w400,
@@ -103,29 +66,54 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       height: 20.0,
                     ),
-                    TextField(
-                      keyboardType: TextInputType.text,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        fullName = value; //get the value entered by user.
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Nome Completo",
-                        border: OutlineInputBorder(),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black38),
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        celularNumber = value; //get the value entered by user.
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Celular com DDD",
-                        border: OutlineInputBorder(),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            'Tipo de dose',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Radio(
+                                value: '45 ml',
+                                groupValue: tipoDose,
+                                onChanged: (String value) {
+                                  setState(() {
+                                    tipoDose = value;
+                                  });
+                                },
+                              ),
+                              Text(
+                                '45 ml',
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                              Radio(
+                                value: '80 ml',
+                                groupValue: tipoDose,
+                                onChanged: (String value) {
+                                  setState(() {
+                                    tipoDose = value;
+                                  });
+                                },
+                              ),
+                              Text(
+                                '80 ml',
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(
@@ -135,10 +123,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
                       onChanged: (value) {
-                        email = value; //get the value entered by user.
+                        rota = value; //get the value entered by user.
                       },
                       decoration: InputDecoration(
-                        hintText: "Email",
+                        hintText: "Rota (Endereço de entrega)",
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -149,39 +137,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
                       onChanged: (value) {
-                        cpfOuCnpjNumber =
-                            value; //get the value entered by user.
+                        dtEntrega = value; //get the value entered by user.
                       },
                       decoration: InputDecoration(
-                        hintText: "CPF ou CNPJ",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        rgNumber = value; //get the value entered by user.
-                      },
-                      decoration: InputDecoration(
-                        hintText: "RG",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    TextField(
-                      obscureText: true,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        password = value; //get the value entered by user.
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Senha",
+                        hintText: "Data da entrega",
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -196,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            'Gênero',
+                            'Agendar esse pedido para: ',
                             style: TextStyle(
                               fontSize: 16.0,
                               fontWeight: FontWeight.w400,
@@ -208,55 +167,60 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
                               Radio(
-                                value: 'F',
-                                groupValue: gender,
+                                value: 'A cada semana',
+                                groupValue: agendarPedido,
                                 onChanged: (String value) {
                                   setState(() {
-                                    gender = value;
+                                    agendarPedido = value;
                                   });
                                 },
                               ),
                               Text(
-                                'Feminino',
+                                'A cada semana',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                               Radio(
-                                value: 'M',
-                                groupValue: gender,
+                                value: 'A cada duas semanas',
+                                groupValue: agendarPedido,
                                 onChanged: (String value) {
                                   setState(() {
-                                    gender = value;
+                                    agendarPedido = value;
                                   });
                                 },
                               ),
                               Text(
-                                'Masculino',
+                                'A cada duas semanas',
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                              Radio(
+                                value: 'A cada três semanas',
+                                groupValue: agendarPedido,
+                                onChanged: (String value) {
+                                  setState(() {
+                                    agendarPedido = value;
+                                  });
+                                },
+                              ),
+                              Text(
+                                'A cada três semanas',
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                              Radio(
+                                value: 'Mensal',
+                                groupValue: agendarPedido,
+                                onChanged: (String value) {
+                                  setState(() {
+                                    agendarPedido = value;
+                                  });
+                                },
+                              ),
+                              Text(
+                                'Mensal',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],
                           ),
                         ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    DateTimeField(
-                      format: dateFormat,
-                      textAlign: TextAlign.center,
-                      onShowPicker: (context, currentValue) {
-                        return showDatePicker(
-                            context: context,
-                            firstDate: DateTime(1900),
-                            initialDate: currentValue ?? DateTime.now(),
-                            lastDate: DateTime(2100));
-                      },
-                      onChanged: (value) {
-                        birthday = value; //get the value entered by user.
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Data de nascimento",
-                        border: OutlineInputBorder(),
                       ),
                     ),
                     SizedBox(
@@ -273,30 +237,45 @@ class _MyHomePageState extends State<MyHomePage> {
                             setState(() {
                               showProgress = true;
                             });
+                            var now = Instant.now();
 
-                            final newUser =
+                            //statusPedido = "NAOO";
+                            //if (statusPedido = null) {
+                            //var userData = {};
+                            //}
+
+                            //Verificar se FIREBASE está armazenando corretamente
+                            final SolicitarAjuda =
                                 await _auth.createUserWithEmailAndPassword(
                               email: email,
                               password: password,
                             );
 
-                            if (newUser != null) {
+                            void addNumber() {
+                              setState(() {
+                                _n++;
+                              });
+                            }
+
+                            if (SolicitarAjuda != null) {
                               var userData = {
-                                'uid': newUser.user.uid,
-                                'fullName': fullName,
-                                'email': email,
-                                'cpfOuCnpjNumber': cpfOuCnpjNumber,
-                                'rgNumber': rgNumber,
-                                'celularNumber': celularNumber,
-                                'gender': gender,
-                                'birthday': birthday,
-                                'state': state,
-                                'city': city,
+                                'uid': SolicitarAjuda.user.uid,
+                                'tipoDose': tipoDose,
+                                'qtdDose': qtdDose,
+                                'rota': rota,
+                                'dtEntrega': dtEntrega,
+                                'agendarPedido': agendarPedido,
+                                'statusPedido':
+                                    statusPedido, //NECESSARIO VERIFICAR COMO VAI FUNCIONAR O STATUS (FALAR COM SANDRO)
+                                'dataPedido': now
+                                    .inLocalZone()
+                                    .toString('dddd yyyy-MM-dd HH:mm'),
+                                'nrPedido': _n
                               };
 
                               _cloudStorage
-                                  .collection('users')
-                                  .document(newUser.user.uid)
+                                  .collection('SolicitarAjuda')
+                                  .document(SolicitarAjuda.user.uid)
                                   .setData(userData);
 
                               Navigator.push(
@@ -342,16 +321,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Menu()),
+                          MaterialPageRoute(
+                              builder: (context) => ResumoAjuda()),
                         );
                       },
-                      child: Text(
-                        "Já é cadastrado? Ir para o login.",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
                     ),
                   ],
                 ),
