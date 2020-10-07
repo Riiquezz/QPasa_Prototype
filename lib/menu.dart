@@ -1,4 +1,4 @@
-import 'package:QPasa_Prototype/solicitarAjuda.dart';
+import 'package:QPasa_Prototype/reportarProblema.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import './utils/firestore_helper.dart';
@@ -31,12 +31,12 @@ class _MenuState extends State<Menu> {
                 width: 255,
                 elevation: 8.0,
                 radius: 52.0,
-                text: "SOLICITAR AJUDA",
+                text: "Reportar problema",
                 background: buttonColor,
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SolicitarAjuda()),
+                    MaterialPageRoute(builder: (context) => ReportarProblema()),
                   );
                 },
               ),
@@ -62,7 +62,7 @@ class _MenuState extends State<Menu> {
               NiceButton(
                 radius: 40,
                 padding: const EdgeInsets.all(15),
-                text: "CONTATAR CDG",
+                text: "CONTATAR SUPORTE",
                 icon: Icons.contact_phone,
                 background: buttonColor,
                 onPressed: () {

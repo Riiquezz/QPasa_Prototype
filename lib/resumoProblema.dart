@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class ResumoAjuda extends StatefulWidget {
+class ResumoProblema extends StatefulWidget {
   @override
-  _ResumoAjudaState createState() => _ResumoAjudaState();
+  _ResumoProblemaState createState() => _ResumoProblemaState();
 }
 
-class _ResumoAjudaState extends State<ResumoAjuda> {
+class _ResumoProblemaState extends State<ResumoProblema> {
   @override
   void initState() {
     super.initState();
@@ -39,21 +39,13 @@ class _ResumoAjudaState extends State<ResumoAjuda> {
           return Column(
             children: <Widget>[
 //load data into widgets
-              Text("${querySnapshot.documents[i].data['dtEntrega']}"),
-              Text("${querySnapshot.documents[i].data['qtdDose']}"),
-              Text("${querySnapshot.documents[i].data['rota']}"),
-              Text("${querySnapshot.documents[i].data['tipoDose']}"),
+              Text("${querySnapshot.documents[i].data['dataReclamacao']}"),
+              Text("${querySnapshot.documents[i].data['nrReclamacao']}"),
+              Text("${querySnapshot.documents[i].data['descReclamacao']}"),
+              Text("${querySnapshot.documents[i].data['tipoReclamacao']}"),
               SizedBox(
                 height: 20.0,
               ),
-              Text(
-                'Pedido agendado para: ',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Text("${querySnapshot.documents[i].data['agendarPedido']}"),
             ],
           );
         },
@@ -67,6 +59,8 @@ class _ResumoAjudaState extends State<ResumoAjuda> {
 
   //get firestore instance
   getPedido() async {
-    return await Firestore.instance.collection('fazerPedido').getDocuments();
+    return await Firestore.instance
+        .collection('reportarProblema')
+        .getDocuments();
   }
 }
