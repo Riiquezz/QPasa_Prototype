@@ -45,12 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
   String fullName,
       email,
       password,
-      cpfOuCnpjNumber,
+      cpfNumber,
       gender,
       state,
       city,
-      celularNumber,
-      rgNumber;
+      celularNumber;
   DateTime birthday;
 
   @override
@@ -149,25 +148,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
                       onChanged: (value) {
-                        cpfOuCnpjNumber =
-                            value; //get the value entered by user.
+                        cpfNumber = value; //get the value entered by user.
                       },
                       decoration: InputDecoration(
-                        hintText: "CPF ou CNPJ",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        rgNumber = value; //get the value entered by user.
-                      },
-                      decoration: InputDecoration(
-                        hintText: "RG",
+                        hintText: "CPF",
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -285,8 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 'uid': newUser.user.uid,
                                 'fullName': fullName,
                                 'email': email,
-                                'cpfOuCnpjNumber': cpfOuCnpjNumber,
-                                'rgNumber': rgNumber,
+                                'cpfOuCnpjNumber': cpfNumber,
                                 'celularNumber': celularNumber,
                                 'gender': gender,
                                 'birthday': birthday,
