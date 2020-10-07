@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "898937017338",
-    "firebase_url": "https://qpasa-96517.firebaseio.com",
-    "project_id": "qpasa-96517",
-    "storage_bucket": "qpasa-96517.appspot.com"
+    "project_number": "831928094700",
+    "firebase_url": "https://qpasa-90e9e.firebaseio.com",
+    "project_id": "qpasa-90e9e",
+    "storage_bucket": "qpasa-90e9e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:898937017338:android:7ea7a075c6055417f24a43",
+        "mobilesdk_app_id": "1:831928094700:android:d37dbdc2d4a46be21bbac9",
         "android_client_info": {
           "package_name": "com.example.QPasa_Prototype"
         }
       },
       "oauth_client": [
         {
-          "client_id": "898937017338-9a5ttfcn9samo171tgtqjpc816ijkoja.apps.googleusercontent.com",
+          "client_id": "831928094700-topbbo2j7708bdjaqm0rapkhs1mqjk63.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAyV9nYshsy3YRv7tWoXn4TcxOylSgCN74"
+          "current_key": "AIzaSyBiDi1DKFvaWvbdRwLcNDsDLLI0dJLcf_o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "898937017338-9a5ttfcn9samo171tgtqjpc816ijkoja.apps.googleusercontent.com",
+              "client_id": "831928094700-topbbo2j7708bdjaqm0rapkhs1mqjk63.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

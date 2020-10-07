@@ -342,7 +342,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Menu()),
+                          MaterialPageRoute(
+                              builder: (context) => MyLoginPage()),
                         );
                       },
                       child: Text(
