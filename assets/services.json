@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "qpasa-90e9e",
+  "private_key_id": "83466e765e3f27e0bf1497ec39e974261ceae4af",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCNnZwMm54qE8KW\nEUOC7Ilih2kUZu+3mth/lKDkp3i5BQv8dv0QavEXHdT5XEm9reSQKgpDezjDN4Jl\npFf7ipUpRJT7M9JlQuQ0cP/MYsaNesDYd2Bt9E9mCO2UDv5MSLzx4kmAUBVNpL4r\nPXlQAvU3kAuqyoaxTuPvpN3HZ6MV2AlpI35lx2aUYosLHB1xGbhvkzxVLN9r35iW\n5zmBOO3e4f+pJ8LEkjjzxdmylIRCaDfJ4E5Z5ao+kFweczAhQrQNo1dRQ+tO8SfF\n7OMNrD8eUWizWCnOXAEKefAMUSOwnF2FZadQCnVHRXitMAjeyJpZOn2aCQCZBEaR\nc8LVGcPdAgMBAAECggEAAZlZ/bp0Gr2GYPNo871//6DPyu8uncAd2bLv7iUF8/De\npcciLGFIv54SnY4xNvcTsZ0H6KMnjOy/iC5G4Aw8iu6/T+bR5VrQANeVy9UBsO9F\n5ivS5urvSpOnOxjAPlRD7edENTKySuIlU4+qIwEli68Qsqj+xFnDsR0HdAzzhneZ\ntlC5UF3zqI48lVsYWVRZ2fg/oEyt4LMZg398FmxtBKGDK46dEw82EJe4cdG5Zvnd\nt6hOzG4pLlUoQMtqiDH+xyyEfm5u7RRYDScDxtPM9xKTFiavszokDaY8zT1g9GAd\nFkJm7WOQeD51ufLJAyzyGKNZW+0Qnj4S6xrs/whqcQKBgQDEUWtGb7wt3IxuX9tH\ne6zsNVIRXqNabd/UW+ENiQ9oR/2TaR7ClRbcvZAp8rPfEIfXuATGD26r66Hg9Rz4\nqREU6Elk8tAXaI17YXh5v3dM903fmud7m3jOL1JrUuofpFeVdEQuZy2ee4rSlzYw\nQ2QUNhY/TqraY6T3ZXazSoNkEwKBgQC4qvEU/Td+bHTaY2hgMK+As00R3YX/rASJ\nNocBy7QX56j9LW3MaB5B/NthuZeS9qB7N+cjBPGXwNNLcAYwr1zfx39sgWsOL/t/\nl/pRJNbrn4/vPpKid3CX8eLdd5w5aJzWd7Uga3XLyrczFy7KF0F9SWM029OVJppp\nDkqEfELWTwKBgQCSa+eG8W95BTX4XKY/+o5O3rYHHn7Xw3td9+kzHzbOoGMQvyai\nGnCi0v/jSZG+naWzzxxAXOI+d9CU6DxjejWzUkzrbe6mhuR/UYN5ysRAM3NxgyeD\nmcHQhpsCUSUt1HU+kykHMw1jVuGDkCRqetj5+h09un7Tw94WZybRMpIs4QKBgHFq\nOypC4iQ5BANkbiQ1gnQuqrTAMp31zctfu8b0jqTn2De2AOs7PuoUG8CHNXpDEgjb\nKo+tZ5tmB98a7BJWgVnGspG3YkKSYYnZkxjm4UBQ/RtYeMJjTLllC4os/bucbkah\nupIwrWX+GEm+gTQI2GXT/qPmJqpBzS+cYVPA5WOtAoGBALUvAqa9fqtFX8xlKqtn\nRSCLhgkxXJJ+GktoCY+NW2GdmgLXAjV/R1dDsgyv4nPkvXQbKvVJfuHn3LHzZwJ4\nLEwYhTwMBGZWkM9OihNZpXAHEnyL2GZv0ZtS9f7e+9ASr0IzPPviVfhCMGJBAP/0\n5j0k7Ll7VmG3PukuDeRJApgQ\n-----END PRIVATE KEY-----\n",
+  "client_email": "qpasa-chatbot@qpasa-90e9e.iam.gserviceaccount.com",
+  "client_id": "107178550993017817153",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/qpasa-chatbot%40qpasa-90e9e.iam.gserviceaccount.com"
+}

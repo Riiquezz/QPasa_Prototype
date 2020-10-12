@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'utils/location.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'login.dart';
 
@@ -22,6 +23,7 @@ class ReportarProblema extends StatefulWidget {
 class _ReportarProblemaState extends State<ReportarProblema> {
   final _auth = FirebaseAuth.instance;
   final _cloudStorage = Firestore.instance;
+  final storage = new FlutterSecureStorage();
   final dateFormat = DateFormat("dd/MM/yyyy");
   bool showProgress = false;
 
@@ -138,11 +140,7 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                             var now = Instant.now();
 
                             //Verificar se FIREBASE está armazenando corretamente
-                            final reportarProblema =
-                                await _auth.createUserWithEmailAndPassword(
-                              email: email,
-                              password: password,
-                            );
+                            String userId = await storage.read(key: 'userId');
 
                             void addNumber() {
                               setState(() {
@@ -150,9 +148,9 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                               });
                             }
 
-                            if (reportarProblema != null) {
+                            if (userId != null) {
                               var userData = {
-                                'uid': reportarProblema.user.uid,
+                                'userUid': userId,
                                 'tipoReclamacao': tipoReclamacao,
                                 'descReclamacao': descReclamacao,
                                 'dataReclamacao': now
@@ -163,7 +161,7 @@ class _ReportarProblemaState extends State<ReportarProblema> {
 
                               _cloudStorage
                                   .collection('reportarProblema')
-                                  .document(reportarProblema.user.uid)
+                                  .document()
                                   .setData(userData);
 
                               Navigator.push(

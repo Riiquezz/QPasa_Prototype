@@ -32,6 +32,9 @@ dependencies:
   auto_size_text: ^2.1.0
   flutter_open_whatsapp: ^0.1.2
   time_machine: ^0.9.13
+  flutter_dialogflow: ^0.1.3
+  bubble: ^1.1.9+1
+  intl:
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +45,12 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+
+  assets:
+    - assets/services.json
+
+    - assets/default.png
+    - assets/robot.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

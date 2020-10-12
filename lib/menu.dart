@@ -1,3 +1,4 @@
+import 'package:QPasa_Prototype/chat.dart';
 import 'package:QPasa_Prototype/reportarProblema.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -43,19 +44,19 @@ class _MenuState extends State<Menu> {
               SizedBox(
                 height: 20.0,
               ),
-              /*NiceButton(
+              NiceButton(
                 width: 255,
                 elevation: 8.0,
                 radius: 52.0,
-                text: "HISTÓRICO DE PEDIDOS",
+                text: "Solicitações pelo Chat",
                 background: buttonColor,
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HistoricoPedidos()),
+                    MaterialPageRoute(builder: (context) => ChatBot()),
                   );
                 },
-              ),*/
+              ),
               SizedBox(
                 height: 20.0,
               ),
