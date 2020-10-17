@@ -17,7 +17,7 @@ class MyLoginPage extends StatefulWidget {
 class _MyLoginPageState extends State<MyLoginPage> {
   final _auth = FirebaseAuth.instance;
   final storage = new FlutterSecureStorage();
-  final _cloudStorage = Firestore.instance;
+  final _cloudStorage = FirebaseFirestore.instance;
   final facebookLogin = new FacebookLogin();
   String state, city;
   bool showProgress = false;
@@ -64,11 +64,12 @@ class _MyLoginPageState extends State<MyLoginPage> {
     _auth.signOut();
 
     var fbLoginResult = await facebookLogin.logIn(['email', 'public_profile']);
+    FacebookAccessToken accessToken = fbLoginResult.accessToken;
 
     switch (fbLoginResult.status) {
       case FacebookLoginStatus.loggedIn:
-        final facebookAuthCred = FacebookAuthProvider.getCredential(
-            accessToken: fbLoginResult.accessToken.token);
+        final facebookAuthCred =
+            FacebookAuthProvider.credential(fbLoginResult.accessToken.token);
         final newUser = await _auth.signInWithCredential(facebookAuthCred);
 
         if (newUser != null) {
@@ -155,6 +156,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Center(
           child: ModalProgressHUD(

@@ -1,5 +1,8 @@
+import 'package:QPasa_Prototype/chat.dart';
+import 'package:QPasa_Prototype/kanban.dart';
 import 'package:QPasa_Prototype/menu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -10,7 +13,11 @@ import './utils/location.dart';
 
 import 'login.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -38,8 +45,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _auth = FirebaseAuth.instance;
-  final _cloudStorage = Firestore.instance;
-  final dateFormat = DateFormat("dd/MM/yyyy");
+  final _cloudStorage = FirebaseFirestore.instance;
+  final dateFormat = DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_Br');
   bool showProgress = false;
 
   String fullName,
@@ -77,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return ModalProgressHUD(
       inAsyncCall: showProgress,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Center(
             child: Padding(
@@ -93,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 20.0,
                     ),
                     Text(
-                      'CADASTRO PRODUTOR',
+                      'CADASTRO',
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w400,
@@ -279,13 +287,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
                               _cloudStorage
                                   .collection('users')
-                                  .document(newUser.user.uid)
-                                  .setData(userData);
+                                  .doc(newUser.user.uid)
+                                  .set(userData);
 
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MyLoginPage(),
+                                  builder: (context) => Menu(),
                                 ),
                               );
 

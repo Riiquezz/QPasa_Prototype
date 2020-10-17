@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreHelper {
-  final Firestore _firestore = Firestore.instance;
+  final _firestore = FirebaseFirestore.instance;
 
   Future getSingleDocument(String collection, String document) async {
-    return await _firestore.collection(collection).document(document).get();
+    return await _firestore.collection(collection).doc(document).get();
   }
 
   getDataWhereEqual(String collection, String field, dynamic condition) {
@@ -19,7 +19,7 @@ class FirestoreHelper {
   }
 
   setNewDocument(String collection, Map<String, dynamic> data) {
-    return Firestore.instance.collection(collection).add(data);
+    return FirebaseFirestore.instance.collection(collection).add(data);
   }
 
   getLastDocument(String collection, String field) {
@@ -27,6 +27,6 @@ class FirestoreHelper {
         .collection(collection)
         .orderBy(field, descending: true)
         .limit(1)
-        .getDocuments();
+        .get();
   }
 }
