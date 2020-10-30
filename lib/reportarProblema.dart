@@ -29,7 +29,11 @@ class _ReportarProblemaState extends State<ReportarProblema> {
 
   int number = 0;
 
-  String tipoReclamacao, descReclamacao, dataReclamacao, enviarReclamacao;
+  String tipoReclamacao,
+      descReclamacao,
+      dataReclamacao,
+      enviarReclamacao,
+      local;
 
   String email, password;
 
@@ -119,7 +123,18 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  Container(
+                  TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      local = value; //get the value entered by user.
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Local",
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  /*Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black38),
                       borderRadius: BorderRadius.circular(5),
@@ -154,7 +169,7 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                         ),
                       ],
                     ),
-                  ),
+                  ),*/
                   SizedBox(
                     height: 20.0,
                   ),
@@ -192,6 +207,7 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                                   DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_Br')
                                       .format(DateTime.now()),
                               'nrReclamacao': lastNumberId,
+                              'local': local
                             };
 
                             _cloudStorage

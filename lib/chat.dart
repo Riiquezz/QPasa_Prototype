@@ -123,7 +123,7 @@ class _ChatBotState extends State<ChatBot> {
 
   Widget chat(String message, int data) {
     return Container(
-      padding: EdgeInsets.only(left: 20, right: 20),
+      padding: EdgeInsets.only(left: 10, right: 10),
       child: Row(
         mainAxisAlignment:
             data == 1 ? MainAxisAlignment.end : MainAxisAlignment.start,

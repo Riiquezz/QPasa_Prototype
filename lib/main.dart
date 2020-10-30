@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/date_symbol_data_file.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
@@ -47,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _auth = FirebaseAuth.instance;
   final _cloudStorage = FirebaseFirestore.instance;
   final dateFormat = DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_Br');
+
   bool showProgress = false;
 
   String fullName,
@@ -64,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     getStateAndCityData();
 
     super.initState();
+    initializeDateFormatting('pt_BR', null);
   }
 
   void getStateAndCityData() async {
@@ -81,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('pt_BR', null);
     return ModalProgressHUD(
       inAsyncCall: showProgress,
       child: Scaffold(
@@ -94,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage('images/logo.png'),
+                      image: AssetImage('assets/EscritaQPasa.png'),
                       width: 200.0,
                     ),
                     SizedBox(

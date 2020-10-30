@@ -31,7 +31,7 @@ class _MenuState extends State<Menu> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 30.0,
+                  height: 50.0,
                 ),
                 NiceButton(
                   width: 300,
@@ -66,7 +66,7 @@ class _MenuState extends State<Menu> {
                 SizedBox(
                   height: 30.0,
                 ),
-                NiceButton(
+                /*NiceButton(
                   width: 300,
                   elevation: 8.0,
                   padding: const EdgeInsets.all(15),
@@ -79,15 +79,15 @@ class _MenuState extends State<Menu> {
                       MaterialPageRoute(builder: (context) => Kanban()),
                     );
                   },
-                ),
-                SizedBox(
+                ),*/
+                /*SizedBox(
                   height: 30.0,
-                ),
+                ),*/
                 NiceButton(
                   width: 300,
                   elevation: 8.0,
                   padding: const EdgeInsets.all(15),
-                  text: "CONTATAR SUPORTE",
+                  text: "\nCONTATAR SUPORTE\n",
                   icon: Icons.people,
                   background: buttonColor,
                   onPressed: () {

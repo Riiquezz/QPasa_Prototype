@@ -165,7 +165,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image(
-                  image: AssetImage('images/logo.png'),
+                  image: AssetImage('assets/EscritaQPasa.png'),
                   width: 300.0,
                 ),
                 SizedBox(
@@ -340,7 +340,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     );
                   },
                   child: Text(
-                    "Ainda não tem cadastrado? Ir para o cadastro.",
+                    "Ainda não tem cadastro? Ir para o cadastro.",
                     style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.w700,
