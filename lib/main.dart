@@ -1,3 +1,4 @@
+import 'package:QPasa_Prototype/cadastroCondominio.dart';
 import 'package:QPasa_Prototype/chat.dart';
 import 'package:QPasa_Prototype/kanban.dart';
 import 'package:QPasa_Prototype/menu.dart';
@@ -47,7 +48,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _auth = FirebaseAuth.instance;
   final _cloudStorage = FirebaseFirestore.instance;
-  final dateFormat = DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_Br');
+
+  final dateFormat = DateFormat(DateFormat.YEAR_MONTH_DAY);
 
   bool showProgress = false;
 
@@ -58,7 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
       gender,
       state,
       city,
-      celularNumber;
+      celularNumber,
+      condominio,
+      apartamento,
+      bloco;
   DateTime birthday;
 
   @override
@@ -66,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
     getStateAndCityData();
 
     super.initState();
-    initializeDateFormatting('pt_BR', null);
   }
 
   void getStateAndCityData() async {
@@ -84,7 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    initializeDateFormatting('pt_BR', null);
     return ModalProgressHUD(
       inAsyncCall: showProgress,
       child: Scaffold(
@@ -258,6 +261,123 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       height: 20.0,
                     ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black38),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            'Qual seu condomínio?',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          DropdownButton<String>(
+                            items: [
+                              DropdownMenuItem<String>(
+                                child: Text('Morada dos Silvestres'),
+                                value: 'morada dos silvestres',
+                              ),
+                              DropdownMenuItem<String>(
+                                child: Text('Vivência Jardim'),
+                                value: 'Vivencia Jardim',
+                              ),
+                            ],
+                            onChanged: (String value) {
+                              setState(() {
+                                condominio = value;
+                              });
+                            },
+                            hint: Text('Selecione'),
+                            value: condominio,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black38),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            "Qual bloco você mora?\n(Marque A se houver apenas um)",
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          DropdownButton<String>(
+                            items: [
+                              DropdownMenuItem<String>(
+                                child: Text('A'),
+                                value: 'A',
+                              ),
+                              DropdownMenuItem<String>(
+                                child: Text('B'),
+                                value: 'B',
+                              ),
+                            ],
+                            onChanged: (String value) {
+                              setState(() {
+                                bloco = value;
+                              });
+                            },
+                            hint: Text('Selecione'),
+                            value: bloco,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black38),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            "Qual seu apartamento?",
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          DropdownButton<String>(
+                            items: [
+                              DropdownMenuItem<String>(
+                                child: Text('101'),
+                                value: '101',
+                              ),
+                              DropdownMenuItem<String>(
+                                child: Text('102'),
+                                value: '102',
+                              ),
+                            ],
+                            onChanged: (String value) {
+                              setState(() {
+                                apartamento = value;
+                              });
+                            },
+                            hint: Text('Selecione'),
+                            value: apartamento,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
                     Material(
                       elevation: 5,
                       color: Colors.lightBlue,
@@ -287,6 +407,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 'birthday': birthday,
                                 'state': state,
                                 'city': city,
+                                'condominio': condominio,
+                                'apartamento': apartamento,
+                                'bloco': bloco
                               };
 
                               _cloudStorage

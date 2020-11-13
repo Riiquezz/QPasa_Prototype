@@ -170,6 +170,7 @@ class _CadastroCondominioState extends State<CadastroCondominio> {
                         ],
                       ),
                     ),
+                    SizedBox(height: 20.00),
                     Material(
                       elevation: 5,
                       color: Colors.lightBlue,

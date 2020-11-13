@@ -1,6 +1,8 @@
 import 'dart:ffi';
 
+import 'package:QPasa_Prototype/menu.dart';
 import 'package:QPasa_Prototype/resumoProblema.dart';
+import 'package:QPasa_Prototype/solicitacaoEnviada.dart';
 import 'package:QPasa_Prototype/utils/firestore_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,9 @@ import 'package:intl/intl.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:time_machine/time_machine.dart';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class ReportarProblema extends StatefulWidget {
   @override
@@ -39,26 +44,35 @@ class _ReportarProblemaState extends State<ReportarProblema> {
 
   int nrReclamacao;
 
+  var appBar = Color(0xFF151026);
+
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
       inAsyncCall: showProgress,
       child: Scaffold(
-        resizeToAvoidBottomInset: false, // set it to false
-        body: SafeArea(
+        backgroundColor: Colors.transparent,
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          backgroundColor: appBar,
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: Text('Preencha os dados'),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(colors: [Colors.blue[300], Colors.blue[100]])),
           child: Center(
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    'PREENCHA OS DADOS',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
                   SizedBox(
                     height: 20.0,
                   ),
@@ -107,31 +121,59 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                     ),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 30.0,
                   ),
-                  TextField(
-                    keyboardType: TextInputType.emailAddress,
-                    textAlign: TextAlign.center,
+                  new TextFormField(
+                    decoration: new InputDecoration(
+                      labelText: "Descrição da Reclamação",
+                      fillColor: Colors.white,
+                      border: new OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(25.0),
+                        borderSide: new BorderSide(),
+                      ),
+                      //fillColor: Colors.green
+                    ),
+                    validator: (val) {
+                      if (val.length == 0) {
+                        return "Precisamos de uma descrição para poder te ajudar :)";
+                      } else {
+                        return null;
+                      }
+                    },
+                    keyboardType: TextInputType.text,
                     onChanged: (value) {
                       descReclamacao = value; //get the value entered by user.
                     },
-                    decoration: InputDecoration(
-                      hintText: "Descrição da Reclamação",
-                      border: OutlineInputBorder(),
+                    style: new TextStyle(
+                      fontFamily: "Poppins",
                     ),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 30.0,
                   ),
-                  TextField(
-                    keyboardType: TextInputType.emailAddress,
-                    textAlign: TextAlign.center,
+                  new TextFormField(
+                    decoration: new InputDecoration(
+                      labelText: "Local",
+                      fillColor: Colors.white,
+                      border: new OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(25.0),
+                        borderSide: new BorderSide(),
+                      ),
+                      //fillColor: Colors.green
+                    ),
+                    validator: (val) {
+                      if (val.length == 0) {
+                        return "Precisamos do local para poder te ajudar :)";
+                      } else {
+                        return null;
+                      }
+                    },
+                    keyboardType: TextInputType.text,
                     onChanged: (value) {
                       local = value; //get the value entered by user.
                     },
-                    decoration: InputDecoration(
-                      hintText: "Local",
-                      border: OutlineInputBorder(),
+                    style: new TextStyle(
+                      fontFamily: "Poppins",
                     ),
                   ),
                   /*Container(
@@ -171,7 +213,7 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                     ),
                   ),*/
                   SizedBox(
-                    height: 20.0,
+                    height: 40.0,
                   ),
                   Material(
                     elevation: 5,
@@ -179,6 +221,7 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                     borderRadius: BorderRadius.circular(10.0),
                     child: SizedBox(
                       child: MaterialButton(
+                        minWidth: 400.0,
                         onPressed: () async {
                           setState(() {
                             showProgress = true;
@@ -202,7 +245,6 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                               'userUid': userId,
                               'tipoReclamacao': tipoReclamacao,
                               'descReclamacao': descReclamacao,
-                              'enviarReclamacao': enviarReclamacao,
                               'dataReclamacao':
                                   DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_Br')
                                       .format(DateTime.now()),
@@ -218,7 +260,7 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ResumoProblema(),
+                                builder: (context) => SolicitacaoEnviada(),
                               ),
                             );
 

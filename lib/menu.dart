@@ -15,30 +15,37 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> {
   var buttonColor = Color(0xff5b86e5);
+  var appBar = Color(0xFF151026);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: appBar,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text('Bem-vindo'),
+        title: Text('Menu'),
       ),
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+            gradient:
+                LinearGradient(colors: [Colors.blue[900], Colors.blue[100]])),
         child: Center(
           child: Container(
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 50.0,
+                  height: 30.0,
                 ),
                 NiceButton(
-                  width: 300,
-                  elevation: 8.0,
-                  text: "\nREPORTAR PROBLEMA\n",
+                  radius: 30.0,
+                  width: 400,
+                  elevation: 20.0,
+                  text: "\n\nREPORTAR PROBLEMA\n\n",
                   icon: Icons.report,
-                  background: buttonColor,
+                  background: appBar,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -51,7 +58,8 @@ class _MenuState extends State<Menu> {
                   height: 30.0,
                 ),
                 NiceButton(
-                  width: 300,
+                  radius: 30.0,
+                  width: 400,
                   elevation: 8.0,
                   text: "\nAJUDA PELO CHAT\n",
                   icon: Icons.chat,
@@ -84,7 +92,8 @@ class _MenuState extends State<Menu> {
                   height: 30.0,
                 ),*/
                 NiceButton(
-                  width: 300,
+                  radius: 30.0,
+                  width: 400,
                   elevation: 8.0,
                   padding: const EdgeInsets.all(15),
                   text: "\nCONTATAR SUPORTE\n",

@@ -29,18 +29,27 @@ class _ChatBotState extends State<ChatBot> {
     print(aiResponse.getListMessage()[0]["text"]["text"][0].toString());
   }
 
+  var appBar = Color(0xFF151026);
+
   final messageInsert = TextEditingController();
   List<Map> messsages = List();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        backgroundColor: appBar,
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Text('Pergunte o que desejar :)'),
+      ),
       body: Container(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
             Container(
               padding: EdgeInsets.only(top: 15, bottom: 10),
               child: Text(
@@ -90,7 +99,7 @@ class _ChatBotState extends State<ChatBot> {
                     icon: Icon(
                       Icons.send,
                       size: 30.0,
-                      color: Colors.greenAccent,
+                      color: Colors.blueAccent,
                     ),
                     onPressed: () {
                       if (messageInsert.text.isEmpty) {

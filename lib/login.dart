@@ -18,7 +18,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
   final _auth = FirebaseAuth.instance;
   final storage = new FlutterSecureStorage();
   final _cloudStorage = FirebaseFirestore.instance;
-  final facebookLogin = new FacebookLogin();
   String state, city;
   bool showProgress = false;
   String email, password;
@@ -57,100 +56,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
     state = location.state;
     city = location.city;
-  }
-
-  void loginWithFacebook() async {
-    facebookLogin.logOut();
-    _auth.signOut();
-
-    var fbLoginResult = await facebookLogin.logIn(['email', 'public_profile']);
-    FacebookAccessToken accessToken = fbLoginResult.accessToken;
-
-    switch (fbLoginResult.status) {
-      case FacebookLoginStatus.loggedIn:
-        final facebookAuthCred =
-            FacebookAuthProvider.credential(fbLoginResult.accessToken.token);
-        final newUser = await _auth.signInWithCredential(facebookAuthCred);
-
-        if (newUser != null) {
-          await storage.write(
-            key: 'userId',
-            value: newUser.user.uid,
-          );
-
-          if (newUser.additionalUserInfo.isNewUser) {
-            var userData = {
-              'uid': newUser.user.uid,
-              'fullName': newUser.additionalUserInfo.profile['name'],
-              'email': newUser.additionalUserInfo.profile['email'],
-              'cpfNumber': '',
-              'gender': '',
-              'birthday': '',
-              'state': state,
-              'city': city,
-            };
-
-            _cloudStorage
-                .collection('users')
-                .document(newUser.user.uid)
-                .setData(userData);
-          }
-
-          Fluttertoast.showToast(
-            msg: "Sucesso",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            backgroundColor: Colors.blueAccent,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-
-          setState(() {
-            showProgress = false;
-          });
-
-          Future.delayed(Duration(seconds: 3), () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Menu(),
-              ),
-            );
-          });
-        } else {
-          Fluttertoast.showToast(
-            msg: "Opa! Tente novamente mais tarde.",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            backgroundColor: Colors.redAccent,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        }
-
-        // A variável user guarda as informações do usuário, como foto, nome, etc.
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        Fluttertoast.showToast(
-          msg: "Opa! Você cancelou o login pelo facebook.",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          backgroundColor: Colors.redAccent,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        break;
-      case FacebookLoginStatus.error:
-        Fluttertoast.showToast(
-          msg: fbLoginResult.errorMessage,
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          backgroundColor: Colors.redAccent,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        break;
-    }
   }
 
   @override
@@ -283,52 +188,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 ),
                 SizedBox(
                   height: 20.0,
-                ),
-                Material(
-                  elevation: 5,
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: MaterialButton(
-                      onPressed: () async {
-                        setState(() {
-                          showProgress = true;
-                        });
-
-                        try {
-                          loginWithFacebook();
-
-                          setState(() {
-                            showProgress = false;
-                          });
-                        } catch (e) {
-                          Fluttertoast.showToast(
-                            msg: "Opa! Tente novamente mais tarde.",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            backgroundColor: Colors.redAccent,
-                            textColor: Colors.white,
-                            fontSize: 16.0,
-                          );
-                          setState(() {
-                            showProgress = false;
-                          });
-                        }
-                      },
-                      child: Text(
-                        "Entrar com Facebook",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20.0,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15.0,
                 ),
                 GestureDetector(
                   onTap: () {
