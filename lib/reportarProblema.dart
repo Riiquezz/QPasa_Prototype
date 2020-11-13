@@ -65,8 +65,10 @@ class _ReportarProblemaState extends State<ReportarProblema> {
         ),
         body: Container(
           decoration: BoxDecoration(
-              gradient:
-                  LinearGradient(colors: [Colors.blue[300], Colors.blue[100]])),
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Colors.blue[300], Colors.blue[100]])),
           child: Center(
             child: Padding(
               padding: EdgeInsets.all(8.0),

@@ -1,5 +1,6 @@
 import 'package:QPasa_Prototype/chat.dart';
 import 'package:QPasa_Prototype/kanban.dart';
+import 'package:QPasa_Prototype/login.dart';
 import 'package:QPasa_Prototype/reportarProblema.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,10 @@ class _MenuState extends State<Menu> {
       ),
       body: Container(
         decoration: BoxDecoration(
-            gradient:
-                LinearGradient(colors: [Colors.blue[900], Colors.blue[100]])),
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [Colors.blue[900], Colors.blue[100]])),
         child: Center(
           child: Container(
             child: Column(

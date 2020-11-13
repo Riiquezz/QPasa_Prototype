@@ -15,10 +15,50 @@ import './utils/location.dart';
 
 import 'login.dart';
 
+//Splash screen
+import 'package:QPasa_Prototype/login.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
+}
+
+class Splash extends StatefulWidget {
+  @override
+  _SplashState createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIOverlays([]);
+    Future.delayed(Duration(seconds: 4)).then((_) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => MyApp()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [Color(0xffED213A), Color(0xff93291E)],
+        )),
+        child: Center(
+          child: Container(
+            width: 150,
+            height: 150,
+            child: Image.asset("assets/logoQPasa.png"),
+          ),
+        ));
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -92,7 +132,10 @@ class _MyHomePageState extends State<MyHomePage> {
       inAsyncCall: showProgress,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: SafeArea(
+        body: Container(
+          decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(colors: [Colors.blue[300], Colors.blue[100]])),
           child: Center(
             child: Padding(
               padding: EdgeInsets.all(8.0),
@@ -464,11 +507,24 @@ class _MyHomePageState extends State<MyHomePage> {
                               builder: (context) => MyLoginPage()),
                         );
                       },
-                      child: Text(
-                        "Já é cadastrado? Ir para o login.",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w700,
+                      child: Card(
+                        color: Colors.lightBlue,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  "Já é cadastrado?\n   Ir para o Login!",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),

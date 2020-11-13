@@ -48,6 +48,11 @@ class _ChatBotState extends State<ChatBot> {
         title: Text('Pergunte o que desejar :)'),
       ),
       body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [Colors.blue[200], Colors.blue[600]])),
         child: Column(
           children: <Widget>[
             Container(

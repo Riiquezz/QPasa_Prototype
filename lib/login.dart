@@ -61,8 +61,14 @@ class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [Colors.blue[400], Colors.blue[100]])),
         child: Center(
           child: ModalProgressHUD(
             inAsyncCall: showProgress,
@@ -176,7 +182,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                         }
                       },
                       child: Text(
-                        "Entrar",
+                        "ENTRAR",
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 20.0,
@@ -187,7 +193,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 40.0,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -198,16 +204,29 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       ),
                     );
                   },
-                  child: Text(
-                    "Ainda não tem cadastro? Ir para o cadastro.",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w700,
+                  child: Card(
+                    color: Colors.lightBlue,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Ainda não tem cadastro?\n           Cadastre-se!",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 10.0,
+                  height: 30.0,
                 ),
                 GestureDetector(
                   onTap: () async {
@@ -232,11 +251,24 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       );
                     }
                   },
-                  child: Text(
-                    "Esqueci minha senha",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w700,
+                  child: Card(
+                    color: Colors.lightBlue,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Esqueci minha senha :(",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
