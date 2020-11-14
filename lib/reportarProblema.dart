@@ -79,9 +79,13 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                     height: 20.0,
                   ),
                   Container(
+                    width: 400,
+                    padding: EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black38),
-                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Colors.grey[900], width: 0.20),
+                      borderRadius: BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
                     ),
                     child: Column(
                       children: <Widget>[
@@ -125,57 +129,69 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                   SizedBox(
                     height: 30.0,
                   ),
-                  new TextFormField(
-                    decoration: new InputDecoration(
-                      labelText: "Descrição da Reclamação",
-                      fillColor: Colors.white,
-                      border: new OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(25.0),
-                        borderSide: new BorderSide(),
-                      ),
-                      //fillColor: Colors.green
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey[900], width: 0.20),
+                      borderRadius: BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
                     ),
-                    validator: (val) {
-                      if (val.length == 0) {
-                        return "Precisamos de uma descrição para poder te ajudar :)";
-                      } else {
-                        return null;
-                      }
-                    },
-                    keyboardType: TextInputType.text,
-                    onChanged: (value) {
-                      descReclamacao = value; //get the value entered by user.
-                    },
-                    style: new TextStyle(
-                      fontFamily: "Poppins",
+                    child: TextFormField(
+                      decoration: new InputDecoration(
+                          labelText: "Descrição da Reclamação",
+                          fillColor: Colors.white,
+                          border: InputBorder.none
+                          //fillColor: Colors.green
+                          ),
+                      validator: (val) {
+                        if (val.length == 0) {
+                          return "Precisamos de uma descrição para poder te ajudar :)";
+                        } else {
+                          return null;
+                        }
+                      },
+                      keyboardType: TextInputType.text,
+                      onChanged: (value) {
+                        descReclamacao = value; //get the value entered by user.
+                      },
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 30.0,
                   ),
-                  new TextFormField(
-                    decoration: new InputDecoration(
-                      labelText: "Local",
-                      fillColor: Colors.white,
-                      border: new OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(25.0),
-                        borderSide: new BorderSide(),
-                      ),
-                      //fillColor: Colors.green
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey[900], width: 0.20),
+                      borderRadius: BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
                     ),
-                    validator: (val) {
-                      if (val.length == 0) {
-                        return "Precisamos do local para poder te ajudar :)";
-                      } else {
-                        return null;
-                      }
-                    },
-                    keyboardType: TextInputType.text,
-                    onChanged: (value) {
-                      local = value; //get the value entered by user.
-                    },
-                    style: new TextStyle(
-                      fontFamily: "Poppins",
+                    child: TextFormField(
+                      decoration: new InputDecoration(
+                          labelText: "Local",
+                          fillColor: Colors.white,
+                          border: InputBorder.none
+                          //fillColor: Colors.green
+                          ),
+                      validator: (val) {
+                        if (val.length == 0) {
+                          return "Precisamos de uma descrição para poder te ajudar :)";
+                        } else {
+                          return null;
+                        }
+                      },
+                      keyboardType: TextInputType.text,
+                      onChanged: (value) {
+                        local = value; //get the value entered by user.
+                      },
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                      ),
                     ),
                   ),
                   /*Container(

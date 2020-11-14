@@ -104,7 +104,7 @@ class _MenuState extends State<Menu> {
                   background: buttonColor,
                   onPressed: () {
                     FlutterOpenWhatsapp.sendSingleMessage(
-                        "NUMERO DO CARA", "Olá, preciso de ajuda!");
+                        "5554999164001", "Olá, preciso de ajuda!");
                   },
                 ),
               ],

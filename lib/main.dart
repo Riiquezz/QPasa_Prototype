@@ -305,6 +305,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 20.0,
                     ),
                     Container(
+                      width: 400,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black38),
                         borderRadius: BorderRadius.circular(5),
@@ -312,7 +313,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            'Qual seu condomínio?',
+                            "Qual seu condomínio?",
                             style: TextStyle(
                               fontSize: 16.0,
                               fontWeight: FontWeight.w400,
@@ -326,7 +327,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               DropdownMenuItem<String>(
                                 child: Text('Vivência Jardim'),
-                                value: 'Vivencia Jardim',
+                                value: 'vivencia jardim',
                               ),
                             ],
                             onChanged: (String value) {
@@ -344,6 +345,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 20.0,
                     ),
                     Container(
+                      width: 400,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black38),
                         borderRadius: BorderRadius.circular(5),
@@ -383,6 +385,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 20.0,
                     ),
                     Container(
+                      width: 400,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black38),
                         borderRadius: BorderRadius.circular(5),
@@ -507,23 +510,24 @@ class _MyHomePageState extends State<MyHomePage> {
                               builder: (context) => MyLoginPage()),
                         );
                       },
-                      child: Card(
-                        color: Colors.lightBlue,
+                      child: Container(
+                        width: 400,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.lightBlue),
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  "Já é cadastrado?\n   Ir para o Login!",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                "Já é cadastrado?\n  Ir para o Login!",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

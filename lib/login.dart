@@ -72,102 +72,179 @@ class _MyLoginPageState extends State<MyLoginPage> {
         child: Center(
           child: ModalProgressHUD(
             inAsyncCall: showProgress,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image(
-                  image: AssetImage('assets/EscritaQPasa.png'),
-                  width: 300.0,
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    email = value; // get value from TextField
-                  },
-                  decoration: InputDecoration(
-                    hintText: "Email",
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                TextField(
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    password = value; //get value from textField
-                  },
-                  decoration: InputDecoration(
-                    hintText: "Senha",
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Material(
-                  elevation: 5,
-                  color: Colors.lightBlue,
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: MaterialButton(
-                      onPressed: () async {
-                        setState(() {
-                          showProgress = true;
-                        });
-
-                        try {
-                          final newUser =
-                              await _auth.signInWithEmailAndPassword(
-                            email: email,
-                            password: password,
-                          );
-
-                          if (newUser != null) {
-                            await storage.write(
-                              key: 'userId',
-                              value: newUser.user.uid,
-                            );
-
-                            Fluttertoast.showToast(
-                              msg: "Sucesso",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
-                              backgroundColor: Colors.blueAccent,
-                              textColor: Colors.white,
-                              fontSize: 16.0,
-                            );
-
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image(
+                      image: AssetImage('assets/EscritaQPasa.png'),
+                      width: 300.0,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        email = value; // get value from TextField
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Email",
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextField(
+                      obscureText: true,
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        password = value; //get value from textField
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Senha",
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Material(
+                      elevation: 5,
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: MaterialButton(
+                          onPressed: () async {
                             setState(() {
-                              showProgress = false;
+                              showProgress = true;
                             });
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Menu(),
+                            try {
+                              final newUser =
+                                  await _auth.signInWithEmailAndPassword(
+                                email: email,
+                                password: password,
+                              );
+
+                              if (newUser != null) {
+                                await storage.write(
+                                  key: 'userId',
+                                  value: newUser.user.uid,
+                                );
+
+                                Fluttertoast.showToast(
+                                  msg: "Sucesso",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  backgroundColor: Colors.blueAccent,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0,
+                                );
+
+                                setState(() {
+                                  showProgress = false;
+                                });
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Menu(),
+                                  ),
+                                );
+                              } else {
+                                Fluttertoast.showToast(
+                                  msg: "Opa! Tente novamente mais tarde.",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  backgroundColor: Colors.redAccent,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0,
+                                );
+                                setState(() {
+                                  showProgress = false;
+                                });
+                              }
+                            } catch (e) {
+                              Fluttertoast.showToast(
+                                msg: "Opa! Tente novamente mais tarde.",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                backgroundColor: Colors.redAccent,
+                                textColor: Colors.white,
+                                fontSize: 16.0,
+                              );
+                              setState(() {
+                                showProgress = false;
+                              });
+                            }
+                          },
+                          child: Text(
+                            "ENTRAR",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40.0,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyHomePage(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 400,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.lightBlue),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                "Ainda não tem cadastro?\n           Cadastre-se!",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
-                            );
-                          } else {
-                            Fluttertoast.showToast(
-                              msg: "Opa! Tente novamente mais tarde.",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
-                              backgroundColor: Colors.redAccent,
-                              textColor: Colors.white,
-                              fontSize: 16.0,
-                            );
-                            setState(() {
-                              showProgress = false;
-                            });
-                          }
-                        } catch (e) {
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        if (email != null) {
+                          setState(() {
+                            showProgress = true;
+                          });
+
+                          await _auth.sendPasswordResetEmail(email: email);
+
+                          setState(() {
+                            showProgress = false;
+                          });
+                        } else {
                           Fluttertoast.showToast(
                             msg: "Opa! Tente novamente mais tarde.",
                             toastLength: Toast.LENGTH_SHORT,
@@ -176,103 +253,33 @@ class _MyLoginPageState extends State<MyLoginPage> {
                             textColor: Colors.white,
                             fontSize: 16.0,
                           );
-                          setState(() {
-                            showProgress = false;
-                          });
                         }
                       },
-                      child: Text(
-                        "ENTRAR",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 40.0,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MyHomePage(),
-                      ),
-                    );
-                  },
-                  child: Card(
-                    color: Colors.lightBlue,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
                       child: Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "Ainda não tem cadastro?\n           Cadastre-se!",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
+                        width: 400,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.lightBlue),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                "Esqueci minha senha :(",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    if (email != null) {
-                      setState(() {
-                        showProgress = true;
-                      });
-
-                      await _auth.sendPasswordResetEmail(email: email);
-
-                      setState(() {
-                        showProgress = false;
-                      });
-                    } else {
-                      Fluttertoast.showToast(
-                        msg: "Opa! Tente novamente mais tarde.",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        backgroundColor: Colors.redAccent,
-                        textColor: Colors.white,
-                        fontSize: 16.0,
-                      );
-                    }
-                  },
-                  child: Card(
-                    color: Colors.lightBlue,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "Esqueci minha senha :(",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),
