@@ -49,7 +49,7 @@ class _SolicitacaoEnviadaState extends State<SolicitacaoEnviada> {
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 40.0,
+                    height: 100.0,
                   ),
                   Text(
                     'Vamos trabalhar para resolver :)',
@@ -58,12 +58,9 @@ class _SolicitacaoEnviadaState extends State<SolicitacaoEnviada> {
                   SizedBox(
                     height: 20.0,
                   ),
+                  
                   Image(
-                    image: AssetImage('assets/logoQPasa.png'),
-                    width: 200.0,
-                  ),
-                  Image(
-                    image: AssetImage('assets/EscritaQPasa.png'),
+                    image: AssetImage('assets/logoAgeew.png'),
                     width: 300.0,
                   ),
                 ],

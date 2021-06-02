@@ -14,8 +14,6 @@ import 'package:intl/intl.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import 'package:time_machine/time_machine.dart';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -244,7 +242,6 @@ class _ReportarProblemaState extends State<ReportarProblema> {
                           setState(() {
                             showProgress = true;
                           });
-                          var now = Instant.now();
                           initializeDateFormatting('pt_BR', null);
 
                           final lastNumber =

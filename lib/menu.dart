@@ -9,14 +9,26 @@ import 'package:nice_button/nice_button.dart';
 
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 class Menu extends StatefulWidget {
   @override
   _MenuState createState() => _MenuState();
 }
 
 class _MenuState extends State<Menu> {
-  var buttonColor = Color(0xff5b86e5);
+  var buttonColor = Color(0xffb33030);
   var appBar = Color(0xFF151026);
+
+  _launchURL() async {
+  const url = 'https://ageew.com.br';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +55,7 @@ class _MenuState extends State<Menu> {
                   height: 30.0,
                 ),
                 NiceButton(
-                  radius: 30.0,
+                  radius: 40.0,
                   width: 400,
                   elevation: 20.0,
                   text: "\n\nREPORTAR PROBLEMA\n\n",
@@ -61,7 +73,21 @@ class _MenuState extends State<Menu> {
                   height: 30.0,
                 ),
                 NiceButton(
-                  radius: 30.0,
+                  radius: 40.0,
+                  width: 400,
+                  elevation: 10.0,
+                  text: "\nCONTRATAR UM SERVIÇO\n",
+                  icon: Icons.report,
+                  background: appBar,
+                  onPressed: () {
+                    _launchURL();
+                  },
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+                NiceButton(
+                  radius: 40.0,
                   width: 400,
                   elevation: 8.0,
                   text: "\nAJUDA PELO CHAT\n",
@@ -95,7 +121,7 @@ class _MenuState extends State<Menu> {
                   height: 30.0,
                 ),*/
                 NiceButton(
-                  radius: 30.0,
+                  radius: 40.0,
                   width: 400,
                   elevation: 8.0,
                   padding: const EdgeInsets.all(15),

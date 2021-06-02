@@ -55,7 +55,7 @@ class _SplashState extends State<Splash> {
           child: Container(
             width: 150,
             height: 150,
-            child: Image.asset("assets/logoQPasa.png"),
+            child: Image.asset("assets/AGEEW-13.png"),
           ),
         ));
   }
@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'QPasa',
+      title: 'Ageew - Condomínios',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         inputDecorationTheme: InputDecorationTheme(
@@ -144,11 +144,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage('assets/EscritaQPasa.png'),
+                      image: AssetImage('assets/logoAgeew.png'),
                       width: 200.0,
-                    ),
-                    SizedBox(
-                      height: 20.0,
                     ),
                     Text(
                       'CADASTRO',

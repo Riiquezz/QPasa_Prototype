@@ -20,7 +20,7 @@ dependencies:
   cloud_firestore: ^0.14.1+3
   firebase_auth: ^0.18.1+2
   modal_progress_hud: ^0.1.3
-  fluttertoast: ^7.1.1
+  fluttertoast: ^7.1.8
   datetime_picker_formfield: ^1.0.0
   flutter_xlider: ^3.2.0
   nice_button: ^0.1.7
@@ -34,13 +34,13 @@ dependencies:
   flutter_facebook_login: ^3.0.0
   auto_size_text: ^2.1.0
   flutter_open_whatsapp: ^0.1.2
-  time_machine: ^0.9.13
   flutter_dialogflow: ^0.1.3
   bubble: ^1.1.9+1
   intl:
   file_picker: 1.4.3+1
   firebase_storage: ^4.0.1
   splashscreen: ^1.3.3
+  url_launcher: ^5.7.10
   
 
 dev_dependencies:
@@ -51,7 +51,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/logoQPasa.png"
+  image_path: "assets/AGEEW-13.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -79,11 +79,11 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage('assets/EscritaQPasa.png'),
-                      width: 300.0,
+                      image: AssetImage('assets/logoAgeew.png'),
+                      width: 350.0,
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 5.0,
                     ),
                     TextField(
                       keyboardType: TextInputType.emailAddress,
@@ -93,7 +93,11 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       },
                       decoration: InputDecoration(
                         hintText: "Email",
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            const Radius.circular(50.0),
+                          )
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -107,7 +111,11 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       },
                       decoration: InputDecoration(
                         hintText: "Senha",
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            const Radius.circular(50.0),
+                          )
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -115,8 +123,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     ),
                     Material(
                       elevation: 5,
-                      color: Colors.lightBlue,
-                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.red[400],
+                      borderRadius: BorderRadius.circular(50.0),
                       child: SizedBox(
                         width: double.infinity,
                         child: MaterialButton(
@@ -210,8 +218,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       child: Container(
                         width: 400,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.lightBlue),
+                            borderRadius: BorderRadius.circular(50.0),
+                            color: Colors.red[400]),
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Column(
@@ -258,10 +266,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       child: Container(
                         width: 400,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.lightBlue),
+                            borderRadius: BorderRadius.circular(50.0),
+                            color: Colors.red[400]),
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(15.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
